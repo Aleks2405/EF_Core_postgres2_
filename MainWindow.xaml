@@ -1,0 +1,23 @@
+﻿<Window x:Class="EF_Core_postgres2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EF_Core_postgres2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Canvas>
+            <Button x:Name="button" Content="Добавление&#xA;Студентов&#xA;" Width="98" Height="50" Canvas.Left="35" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center" Click="button_Click"></Button>
+            <TextBox x:Name="studentsTexbox" Width="255" Height="50" Canvas.Left="162" Canvas.Top="30" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+            <Button x:Name="buttunSubjekt" Width="100" Height="50" Canvas.Left="35" Canvas.Top="110" Content="Добавления&#xD;&#xA;Предмета&#xD;&#xA;" Click="buttunSubjekt_Click"></Button>
+            <TextBox x:Name="subjectTextbox" Width="255" Height="50" Canvas.Left="170" Canvas.Top="110"></TextBox>
+            <Button x:Name="buttonVisit" Width="100" Height="50" Canvas.Left="35" Canvas.Top="205" Content="Посещение&#xD;&#xA;студента" Click="buttonVisit_Click"></Button>
+            <TextBox x:Name="visitTextbox" Width="255" Height="50" Canvas.Left="170" Canvas.Top="205" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBox>
+            <DataGrid x:Name="listBox" Height="217" Width="300"  Canvas.Left="481" Canvas.Top="13" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Button x:Name="ButtonList" Width="100" Height="100" Canvas.Left="502" Canvas.Top="258" Content="Просмотр&#xD;&#xA;результатов&#xD;&#xA;" Click="ButtonList_Click">
+            </Button>
+        </Canvas>
+        
+    </Grid>
+</Window>
