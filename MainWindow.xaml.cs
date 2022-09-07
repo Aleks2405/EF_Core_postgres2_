@@ -65,12 +65,12 @@ namespace EF_Core_postgres2
             }
         }
 
-        private void ButtonList_Click(object sender, RoutedEventArgs e)
+        private async void ButtonList_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new ApplicationContext())
             {
                 var list = db.Visits.Include(it => it.Student).
-                    Include(it =>it.Subject).ToList();
+                    Include(it => it.Subject).ToList();
                 listBox.ItemsSource = list;
                 MessageBox.Show($"OK");
             }
