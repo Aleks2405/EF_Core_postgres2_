@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CloudinaryDotNet.Actions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -60,17 +61,15 @@ namespace EF_Core_postgres2
             {
                 await db.Visits.AddAsync(new Visit { Id = Guid.NewGuid(), Date = visitTextbox.Text });
                 db.SaveChanges();
-                MessageBox.Show($"Информация успешно добавлена3");
-               
+                MessageBox.Show($"Информация успешно добавлена3");              
             }
         }
-
         private async void ButtonList_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new ApplicationContext())
             {
-                var list = db.Visits.Include(it => it.Student).
-                    Include(it => it.Subject).ToList();
+                var list = await db.Visits.Include(it => it.Student).  
+                    Include(it => it.Subject).ToListAsync();
                 listBox.ItemsSource = list;
                 MessageBox.Show($"OK");
             }
