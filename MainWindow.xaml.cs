@@ -69,8 +69,8 @@ namespace EF_Core_postgres2
             using (var db = new ApplicationContext())
             {
                 var list = await db.Visits.Include(it => it.Student).  
-                    Include(it => it.Subject).ToListAsync();
-                listBox.ItemsSource = list;
+                    Include(it =>it.Subject).ToListAsync();
+                 listBox.ItemsSource = list;                
                 MessageBox.Show($"OK");
             }
 
