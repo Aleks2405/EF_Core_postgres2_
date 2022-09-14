@@ -15,8 +15,9 @@
             <Button x:Name="buttonVisit" Width="100" Height="50" Canvas.Left="35" Canvas.Top="205" Content="Посещение&#xD;&#xA;студента" Click="buttonVisit_Click"></Button>
             <TextBox x:Name="visitTextbox" Width="255" Height="50" Canvas.Left="170" Canvas.Top="205" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBox>
             <DataGrid x:Name="listBox" Height="217" Width="300"  Canvas.Left="481" Canvas.Top="13" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Button x:Name="ButtonList" Width="100" Height="100" Canvas.Left="502" Canvas.Top="258" Content="Просмотр&#xD;&#xA;результатов&#xD;&#xA;" Click="ButtonList_Click">
-            </Button>
+            <Button x:Name="ButtonList" Width="100" Height="100" Canvas.Left="502" Canvas.Top="258" Content="Просмотр&#xD;&#xA;результатов&#xD;&#xA;" Click="ButtonList_Click"></Button>
+            <Button x:Name="buttonGroup" Width="100" Height="50" Canvas.Left="33" Canvas.Top="308" Click="buttonGroup_Click" Content="Group student&#xD;&#xA;"></Button>
+            <TextBox x:Name="groupText" Width="255" Height="50" Canvas.Left="170" Canvas.Top="308" ></TextBox>
         </Canvas>
         
     </Grid>

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace EF_Core_postgres2
 {
-    public class Student
+    public class Groupp
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
         public string Name { get; set; }
-
-        public Groupp? Groupp { get; set; }
+        List<Student>? Students { get; set; }
 
         public override string ToString()
         {

@@ -12,6 +12,8 @@ namespace EF_Core_postgres2
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<Groupp> Groups { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

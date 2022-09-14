@@ -3,6 +3,7 @@ using System;
 using EF_Core_postgres2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EF_Core_postgres2.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220908180242_InitialCreate5")]
+    partial class InitialCreate5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,9 +84,6 @@ namespace EF_Core_postgres2.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("GroupId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("StudentId")
                         .HasColumnType("uuid");
 
@@ -92,8 +91,6 @@ namespace EF_Core_postgres2.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
 
                     b.HasIndex("StudentId");
 
@@ -113,10 +110,6 @@ namespace EF_Core_postgres2.Migrations
 
             modelBuilder.Entity("EF_Core_postgres2.Visit", b =>
                 {
-                    b.HasOne("EF_Core_postgres2.Groupp", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
                     b.HasOne("EF_Core_postgres2.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
@@ -124,8 +117,6 @@ namespace EF_Core_postgres2.Migrations
                     b.HasOne("EF_Core_postgres2.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId");
-
-                    b.Navigation("Group");
 
                     b.Navigation("Student");
 

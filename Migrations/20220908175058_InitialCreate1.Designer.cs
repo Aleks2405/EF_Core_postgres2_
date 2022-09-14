@@ -3,6 +3,7 @@ using System;
 using EF_Core_postgres2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EF_Core_postgres2.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220908175058_InitialCreate1")]
+    partial class InitialCreate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,37 +24,17 @@ namespace EF_Core_postgres2.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("EF_Core_postgres2.Groupp", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Groups");
-                });
-
             modelBuilder.Entity("EF_Core_postgres2.Student", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("GrouppId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GrouppId");
 
                     b.ToTable("Students");
                 });
@@ -82,9 +64,6 @@ namespace EF_Core_postgres2.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("GroupId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("StudentId")
                         .HasColumnType("uuid");
 
@@ -93,8 +72,6 @@ namespace EF_Core_postgres2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
-
                     b.HasIndex("StudentId");
 
                     b.HasIndex("SubjectId");
@@ -102,21 +79,8 @@ namespace EF_Core_postgres2.Migrations
                     b.ToTable("Visits");
                 });
 
-            modelBuilder.Entity("EF_Core_postgres2.Student", b =>
-                {
-                    b.HasOne("EF_Core_postgres2.Groupp", "Groupp")
-                        .WithMany()
-                        .HasForeignKey("GrouppId");
-
-                    b.Navigation("Groupp");
-                });
-
             modelBuilder.Entity("EF_Core_postgres2.Visit", b =>
                 {
-                    b.HasOne("EF_Core_postgres2.Groupp", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
                     b.HasOne("EF_Core_postgres2.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
@@ -124,8 +88,6 @@ namespace EF_Core_postgres2.Migrations
                     b.HasOne("EF_Core_postgres2.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId");
-
-                    b.Navigation("Group");
 
                     b.Navigation("Student");
 

@@ -14,5 +14,7 @@ namespace EF_Core_postgres2
      
         public Student? Student { get; set; } 
         public Subject? Subject { get; set; }
+        public Groupp? Group { get; set; }
+
     }
 }
