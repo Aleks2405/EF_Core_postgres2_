@@ -16,5 +16,9 @@ namespace EF_Core_postgres2
         public Subject? Subject { get; set; }
         public Groupp? Group { get; set; }
 
+        public override string ToString()
+        {
+            return Date.ToString();
+        }
     }
 }

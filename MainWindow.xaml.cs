@@ -48,11 +48,11 @@ namespace EF_Core_postgres2
                 {
                     Id = Guid.NewGuid(),
                     Name = studentsTexbox.Text,
-                    Groupp = aq 
-                   
-                }) ;
-                
-               await db.SaveChangesAsync();
+                    // Groupp = aq 
+
+                });
+
+                await db.SaveChangesAsync();
                 MessageBox.Show($"Информация успешно добавлена");
 
             }
@@ -62,7 +62,7 @@ namespace EF_Core_postgres2
         {
             using (var db = new ApplicationContext())
             {
-                await db.Subjects.AddAsync(new Subject  { Id = Guid.NewGuid(), Name = subjectTextbox.Text });
+                await db.Subjects.AddAsync(new Subject { Id = Guid.NewGuid(), Name = subjectTextbox.Text });
                 await db.SaveChangesAsync();
                 MessageBox.Show($"Информация успешно добавлена2");
             }
@@ -75,7 +75,7 @@ namespace EF_Core_postgres2
             {
                 await db.Visits.AddAsync(new Visit { Id = Guid.NewGuid(), Date = visitTextbox.Text });
                 await db.SaveChangesAsync();
-                MessageBox.Show($"Информация успешно добавлена3");              
+                MessageBox.Show($"Информация успешно добавлена3");
             }
         }
         private async void ButtonList_Click(object sender, RoutedEventArgs e)
@@ -94,13 +94,12 @@ namespace EF_Core_postgres2
                 // listBox.ItemsSource = list;
                // var g = await db.Visits.ToListAsync();
                ///
-                var list = await db.Visits.Include(it => it.Subject).Include(it => it.Student)
-                    .Include(it =>it.Group).ToListAsync();
-                list.ForEach(it => it.Equals(list));   
-                await db.SaveChangesAsync();
-                listBox.ItemsSource = list;
-              
-
+            var list = await db.Visits.Include(it => it.Subject)
+                .Include(it => it.Student)
+                .Include(it =>it.Group).ToListAsync();
+            // list.ForEach(it => it.Equals(list));   
+            await db.SaveChangesAsync();
+            listBox.ItemsSource = list;            
             }
         }
         Groupp aq;
@@ -108,29 +107,45 @@ namespace EF_Core_postgres2
         {
 
             using (var db = new ApplicationContext())
-            { 
-            //    aq = new Groupp() { Id = Guid.NewGuid(), Name = groupText.Text };
-            //    await db.AddAsync(aq);
-            //    await db.SaveChangesAsync();
-            //    if (aq != null)
-            //    {
-            //        button.IsEnabled = true;
-            //    }
-            //    MessageBox.Show($"Информация успешно добавлена4");
-
-              await  db.Visits.AddAsync(new Visit(){ 
-               Id = Guid.NewGuid(),
-               Date = visitTextbox.Text,
-               Student = new Student() { Id = Guid.NewGuid(), Name = studentsTexbox.Text},
-                   Group = new Groupp() { Id = Guid.NewGuid(), Name = groupText.Text },
-               Subject = new Subject() { Id = Guid.NewGuid(),Name = subjectTextbox.Text },
-              });
+            {
+                aq = new Groupp() { Id = Guid.NewGuid(), Name = groupText.Text };
+                await db.AddAsync(aq);
                 await db.SaveChangesAsync();
-                MessageBox.Show($"test trtst");
-
+                if (aq != null)
+                {
+                    button.IsEnabled = true;
+                }
+                MessageBox.Show($"Информация успешно добавлена4");
             }
-
-
     }
+        private async void buttonPresentStudent_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var list = await db.Students
+                   .Include(it => it.Visit)
+                      .ToListAsync();
+                list.ForEach(it => it.Equals(list));
+                await db.SaveChangesAsync();
+                listBox.ItemsSource = list;
+            }
+        }
+
+        private async void buttonList_Click_1(object sender, RoutedEventArgs e)
+        {
+            using (var db = new ApplicationContext())
+            {          
+                await db.Visits.AddAsync(new Visit()
+                {
+                    Id = Guid.NewGuid(),
+                    Date = visitTextbox.Text,
+                    Student = new Student() { Id = Guid.NewGuid(), Name = studentsTexbox.Text },
+                    Group = new Groupp() { Id = Guid.NewGuid(), Name = groupText.Text },
+                    Subject = new Subject() { Id = Guid.NewGuid(), Name = subjectTextbox.Text },
+                });
+                await db.SaveChangesAsync();
+                MessageBox.Show($"Информация добавлена");
+            }
+        }
     }
 }
